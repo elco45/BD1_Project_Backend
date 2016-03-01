@@ -14,8 +14,8 @@ server.connection({
               }
 });
 
-mongoose.connect('mongodb://admin:admin@ds035844.mongolab.com:35844/lista_productos');
-
+mongoose.connect('mongodb://admin:admin@dbh11.mongolab.com:27117/user');
+//mongoose.connect(process.env.MONGOLAB_URI ||process.env.MONGOHQ_URL || 'mongodb://localhost/angularscaffold')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
