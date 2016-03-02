@@ -1,16 +1,14 @@
 var mongoose = require('mongoose');
 
 var docente = new mongoose.Schema({
-	Id_decente: String,
+	Id_docente: Number,
 	nombre: String,
 	apellido:String,
 	especialidad:String,
 	Id_universidad:Number,
-	password:String
+	password:String,
+	email: String
+
 });
 
 module.exports = mongoose.model('Tabla_docente', docente);
-
-
-
-
