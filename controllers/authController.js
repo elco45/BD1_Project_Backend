@@ -1,28 +1,34 @@
 var joi = require('joi');
 var boom = require('boom');
-var user = require('../schemas/user');
+var docente = require('../schemas/docente');
+var estudiante = require('../schemas/estudiante');
 var SHA3 = require("crypto-js/sha3");
 
 exports.login = {
     auth: false,
     validate: {
       payload: {
-        username: joi.string().required(),
+        email: joi.string().required(),
         password: joi.string().min(2).max(200).required()
       }
     },
     handler: function(request, reply) {
-      var password = String(SHA3(request.payload.password));
-      user.find({username: request.payload.username, password: password}, function(err, user){
+      docente.find({email: request.payload.email, password: request.payload.password}, function(err, user){
           if(!err){
             if(user.length > 0){
               request.auth.session.set(user[0]);
-              return reply({username: user[0].username, scope: user[0].scope});
+              return reply({email: user[0].email, Id_docente:user[0].Id_docente});
             }
-            return reply(boom.unauthorized('Wrong email or password'));
           }
-          return reply(boom.notAcceptable('Error Executing Query'));
       });
+       estudiante.find({email: request.payload.email, password: request.payload.password}, function(err, user){
+          if(!err){
+            if(user.length > 0){
+              request.auth.session.set(user[0]);
+              return reply({email: user[0].email, Id_estudiante:user[0].Id_estudiante});
+            }
+          }
+          });
     }
 };
 exports.logout = {
