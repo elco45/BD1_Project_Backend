@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 
 var curso = new mongoose.Schema({
 	nombre: String,
-	trimestre: Number,
-	año: Date(),
-	estudiantes:String[],
+	trimestre: String,
+	year: String,
 	docente:String,
-	tareas:String[],
-	anuncios:String[],
-	comentarios:String[],
-	confirmacion_alum:String[]
+	estudiantes:[String],
+	tareas:[String],
+	anuncios:[String],
+	comentarios:[String],
+	confirmacion_alum:[String]
 
 });
 

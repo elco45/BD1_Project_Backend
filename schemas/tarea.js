@@ -6,7 +6,7 @@ var tarea = new mongoose.Schema({
 	nota:Number,
 	fecha_entrega:Date(),
 	parcial:Number,
-	solucion:String[]
+	solucion:[String]
 
 
 });
