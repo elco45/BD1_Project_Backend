@@ -7,8 +7,6 @@ var boom = require('boom');
 
 exports.createUser = {
   handler: function(request, reply) {
-
-
     if(request.payload.user.especialidad){//docente
        var newDocente = new docente({
          Id_docente: request.payload.control_id.Id_docente + 1,
@@ -59,8 +57,8 @@ exports.createUser = {
 
     }//fin else
   }//fin handler
-
 };//fin create user
+
 exports.getCtrl = {
   handler: function(request, reply){
     control_id.findOne({_id:'56d7308a3e79d4780263b696'},function(err,control){
@@ -75,19 +73,7 @@ exports.getCtrl = {
   }
 }
 
-exports.getDocentes = {
-  handler: function(request, reply){
-    var docentes = docente.find({});
-    reply(docentes);
-  }
-}
 
-exports.getDocenteById = {
-  handler: function(request, reply){
-    var docente = docente.find({Id_docente:request.payload.Id_docente});
-    reply(docente);
-  }
-}
 
 
 /*  var newUser = new user({

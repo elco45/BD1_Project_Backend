@@ -1,4 +1,4 @@
-var docente = require('docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
+var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 
 exports.getDocentes = {
   handler: function(request, reply){
@@ -23,6 +23,7 @@ exports.creardocente = {
     return reply('ok');
   }
 }
+
 
 exports.getDocenteById = {
   handler: function(request, reply){
