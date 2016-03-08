@@ -6,7 +6,8 @@ var estudiante = new mongoose.Schema({
 	apellido:String,
 	Id_universidad:Number,
 	password:String,
-	email: String
+	email: String,
+	cursos: [String]
 
 });
 

@@ -12,5 +12,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'GET', path: '/v1/logout', config: authController.logout},
 					{method: 'POST', path: '/v1/createCourse', config: cursosController.crearCursos},
 					{method: 'GET', path: '/v1/docente', config: docenteController.getDocentes},
-					{method: 'POST', path: '/v1/docenteid', config: docenteController.getDocenteById}
+					{method: 'POST', path: '/v1/docenteid', config: docenteController.getDocenteById},
+					{method: 'POST', path: '/v1/createUniversity', config: usersController.createUniversity},
+					{method: 'GET', path: '/v1/getUniversidades', config: usersController.getUniversidades}
 					];

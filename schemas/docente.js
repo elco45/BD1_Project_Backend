@@ -7,7 +7,8 @@ var docente = new mongoose.Schema({
 	especialidad:String,
 	Id_universidad:Number,
 	password:String,
-	email: String
+	email: String,
+	cursos: [String]
 
 });
 
