@@ -93,7 +93,7 @@ exports.createUserWithU = {
         Id_estudiante:request.payload.control_id.Id_estudiante + 1,
         nombre: request.payload.user.nombre,
         apellido: request.payload.user.apellido,
-        Id_universidad: request.payload.Id_universidad,
+        Id_universidad: request.payload.universidad.Id_universidad,
         password: request.payload.user.password,
         email: request.payload.user.email,
         cursos:[]
