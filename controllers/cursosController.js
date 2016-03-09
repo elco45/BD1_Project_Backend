@@ -10,10 +10,15 @@ exports.crearCursos = {
   handler: function(request, reply) {
 
       var newCurso = new curso({
-          nombre: request.payload.nombre,
-          trimestre: request.payload.trimestre,
-          year: request.payload.year,
-          docente: 'admin'
+          nombre: request.payload.course.nombre,
+          trimestre: request.payload.course.trimestre,
+          year: request.payload.course.year,
+          docente: request.payload.idTeacher,
+          estudiantes:[],
+          tareas: [],
+          anuncios : [],
+          comentarios: [],
+          confirmacion_alum: []
       });
      newCurso.save();
      return reply('ok');
