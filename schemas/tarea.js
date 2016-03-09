@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 var tarea = new mongoose.Schema({
-	id_tarea:Number,
+	Id_tarea:Number,
 	nota:Number,
 	fecha_entrega:Date(),
 	parcial:Number,
