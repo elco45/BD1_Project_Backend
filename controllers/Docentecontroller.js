@@ -7,6 +7,13 @@ exports.getDocentes = {
   }
 }
 
+exports.getTeacherCurso = {
+  handler: function(request, reply){
+    var teacher = docente.findOne({Id_docente:request.payload.id});
+    reply(teacher);
+  }//fin handler
+}//fin getTeacherCurso
+
 exports.creardocente = {
   handler: function(request, reply){
     var newDocente = new docente({
@@ -19,11 +26,23 @@ exports.creardocente = {
          
     });
     newDocente.save();
-    console.log('Docente saved');
     return reply('ok');
   }
 }
 
+exports.UpdateTeacherCourse = {
+  handler: function(request,reply){
+    docente.findOne({Id_docente:request.payload.docente},function(err,teacher){
+      var arrayCursos = teacher.cursos;
+      arrayCursos.push(request.payload._id);
+      teacher.cursos = arrayCursos;
+      teacher.save(function(err){
+        if(err) throw err;
+      })
+    })
+    reply('ok');
+  }
+}
 
 exports.getDocenteById = {
   handler: function(request, reply){

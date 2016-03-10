@@ -2,7 +2,7 @@ var homeController = require('./controllers/homeController');
 var usersController = require('./controllers/usersController');
 var authController = require('./controllers/authController');
 var cursosController = require('./controllers/cursosController');
-var docenteController = require('./controllers/docenteController');
+var docenteController = require('./controllers/Docentecontroller');
 
 
 exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(request, reply){reply('API v1, productos')}}},
@@ -16,5 +16,8 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'GET', path: '/v1/docente', config: docenteController.getDocentes},
 					{method: 'POST', path: '/v1/docenteid', config: docenteController.getDocenteById},
 					{method: 'POST', path: '/v1/createUniversity', config: usersController.createUniversity},
-					{method: 'GET', path: '/v1/getUniversidades', config: usersController.getUniversidades}
+					{method: 'POST', path: '/v1/updateTeacher', config: docenteController.UpdateTeacherCourse},
+					{method: 'GET', path: '/v1/getUniversidades', config: usersController.getUniversidades},
+					{method: 'POST', path: '/v1/getTeacherCourse', config: docenteController.getTeacherCurso},
+					{method: 'POST', path: '/v1/SeeCourse', config: cursosController.verAllCourse}
 					];
