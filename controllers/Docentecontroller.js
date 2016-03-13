@@ -7,6 +7,7 @@ exports.getDocentes = {
   }
 }
 
+
 exports.getTeacherCurso = {
   handler: function(request, reply){
     var teacher = docente.findOne({Id_docente:request.payload.id});
@@ -23,7 +24,7 @@ exports.creardocente = {
       especialidad: request.payload.especialidad,
       Id_universidad: request.payload.Id_universidad,
       password: request.password
-         
+
     });
     newDocente.save();
     return reply('ok');
@@ -46,7 +47,8 @@ exports.UpdateTeacherCourse = {
 
 exports.getDocenteById = {
   handler: function(request, reply){
-    var docente = docente.find({Id_docente:request.payload.Id_docente});
-    reply(docente);
+    docente.find({Id_docente:request.payload.idDocente},function(err,doc){
+      return reply({nombre: doc[0].nombre});
+    } );
   }
-} 
+}
