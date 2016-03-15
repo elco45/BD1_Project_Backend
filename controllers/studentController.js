@@ -2,7 +2,7 @@ var estudiante = require('../schemas/estudiante');/*objetos q se van a volver ta
 
 exports.getStudentCurso = {
   handler: function(request, reply){
-    var teacher = estudiante.findOne({Id_estudiante:request.payload.id});
-    reply(teacher);
+    var student = estudiante.findOne({Id_estudiante:request.payload.id});
+    reply(student);
   }//fin handler
 }//fin getTeacherCurso

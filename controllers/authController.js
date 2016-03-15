@@ -17,7 +17,7 @@ exports.login = {
           if(!err){
             if(user.length > 0){
               request.auth.session.set(user[0]);
-              return reply({email: user[0].email, IdUser:user[0].Id_docente,CurrentCurso:null});
+              return reply({email: user[0].email, IdUser:user[0].Id_docente,CurrentCurso:"0"});
             }
           }
       });
@@ -25,7 +25,7 @@ exports.login = {
           if(!err){
             if(user.length > 0){
               request.auth.session.set(user[0]);
-              return reply({email: user[0].email, IdUser:user[0].Id_estudiante,CurrentCurso:null});
+              return reply({email: user[0].email, IdUser:user[0].Id_estudiante,CurrentCurso:"0"});
             }
           }
           });
