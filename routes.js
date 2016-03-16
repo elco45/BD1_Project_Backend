@@ -11,7 +11,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/registerWithU', config: usersController.createUserWithU},
 					{method: 'POST', path: '/v1/login', config: authController.login},
 					{method: 'GET', path: '/v1/getControl', config: usersController.getCtrl},
-					{method: 'POST', path: '/v1/getUniversity', config: usersController.getUniversity},
+					{method: 'POST', path: '/v1/getUniversityByName', config: usersController.getUniversityByName},
 					{method: 'GET', path: '/v1/logout', config: authController.logout},
 					{method: 'POST', path: '/v1/createCourse', config: cursosController.crearCursos},
 					{method: 'GET', path: '/v1/docente', config: docenteController.getDocentes},
@@ -21,5 +21,12 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'GET', path: '/v1/getUniversidades', config: usersController.getUniversidades},
 					{method: 'POST', path: '/v1/getTeacherCourse', config: docenteController.getTeacherCurso},
 					{method: 'POST', path: '/v1/getStudentCourse', config: studentController.getStudentCurso},
-					{method: 'POST', path: '/v1/SeeCourse', config: cursosController.verAllCourse}
+					{method: 'POST', path: '/v1/SeeCourse', config: cursosController.verAllCourse},
+					{method: 'POST', path: '/v1/getUniversity', config: usersController.getUniversityByName},
+					{method: 'POST', path: '/v1/getUniversityById', config: usersController.getUniversityById},
+					{method: 'POST', path: '/v1/getDocenteByUniversidad', config: studentController.getDocenteByUniversidad},
+					{method: 'POST', path: '/v1/getCourseByIdDocente', config: studentController.getCourseByIdDocente},
+					{method: 'POST', path: '/v1/estaEnCurso', config: studentController.estaEnCurso},
+					{method: 'POST', path: '/v1/addConfirmacion', config: studentController.addConfirmacion},
+					{method: 'POST', path: '/v1/getConfirmacionById', config: docenteController.getConfirmacionById},
 					];

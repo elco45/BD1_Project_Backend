@@ -1,4 +1,5 @@
 var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
+var curso = require('../schemas/curso')
 
 exports.getDocentes = {
   handler: function(request, reply){
@@ -49,6 +50,16 @@ exports.getDocenteById = {
   handler: function(request, reply){
     docente.find({Id_docente:request.payload.idDocente},function(err,doc){
       return reply({nombre: doc[0].nombre});
-    } );
+    });
   }
 }
+
+exports.getConfirmacionById={
+  handler: function(request, reply){
+    curso.findById(request.payload.Id_curso,function(err,course){
+      reply(course);
+    });
+  }
+}
+
+

@@ -27,7 +27,6 @@ exports.crearCursos = {
 
 exports.verAllCourse = {
   handler: function(request, reply) {
-    var cursos = request.payload;
     var todoCursos = curso.findById({_id:request.payload.id});
     return reply(todoCursos);
   }//fin handler

@@ -125,7 +125,7 @@ exports.getCtrl = {
   }
 }
 
-exports.getUniversity = {
+exports.getUniversityByName = {
   handler: function(request, reply){
     university.findOne({Nombre:request.payload.Nombre},function(err,control){
         reply(control);
@@ -161,6 +161,13 @@ exports.getUniversidades={
   }
 }
 
+exports.getUniversityById = {
+  handler: function(request, reply){
+    university.findOne({Id_universidad:request.payload.Id_universidad},function(err,control){
+        reply(control);
+    })
+  }
+}
 
 
 
