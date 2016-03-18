@@ -54,3 +54,10 @@ exports.addConfirmacion={
 	}
 }
 
+exports.GetEstudianteById={
+	handler:function(request,reply){
+		var student=estudiante.findOne({Id_estudiante:request.payload.Id_estudiante});
+		reply(student);
+	}
+}
+

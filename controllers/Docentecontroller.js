@@ -1,5 +1,6 @@
 var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
-var curso = require('../schemas/curso')
+var curso = require('../schemas/curso');
+var estudiante = require('../schemas/estudiante')
 
 exports.getDocentes = {
   handler: function(request, reply){
@@ -61,5 +62,43 @@ exports.getConfirmacionById={
     });
   }
 }
+
+exports.AceptarConfirmacion={
+  handler: function(request, reply){
+    curso.findById(request.payload.Id_curso,function(err,course){
+      for (var i = 0; i < course.confirmacion_alum.length; i++) {
+        if (request.payload.Id_estudiante==course.confirmacion_alum[i]) {
+          course.estudiantes.push(request.payload.Id_estudiante);
+          course.confirmacion_alum.splice(i,1);
+          break;
+        }
+      }
+      course.save(function(){
+        estudiante.findOne({Id_estudiante:request.payload.Id_estudiante},function(err,alumno){
+          alumno.cursos.push(request.payload.Id_curso);
+          alumno.save();
+          return reply('ok');
+        })
+      })
+    });   
+  }
+}
+
+exports.RechazarConfirmacion={
+  handler: function(request, reply){
+    curso.findById(request.payload.Id_curso,function(err,course){
+      for (var i = 0; i < course.confirmacion_alum.length; i++) {
+        if (request.payload.Id_estudiante==course.confirmacion_alum[i]) {
+          course.confirmacion_alum.splice(i,1);
+          break;
+        }
+      }
+      course.save();
+      return reply('ok');
+    });
+  }
+}
+
+
 
 
