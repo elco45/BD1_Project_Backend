@@ -8,7 +8,6 @@ var boom = require('boom');
 
 exports.crearCursos = {
   handler: function(request, reply) {
-
       var newCurso = new curso({
           nombre: request.payload.course.nombre,
           trimestre: request.payload.course.trimestre,
@@ -20,8 +19,13 @@ exports.crearCursos = {
           comentarios: [],
           confirmacion_alum: []
       });
-     newCurso.save();
-     return reply(newCurso);
+     newCurso.save(function(){
+        docente.findOne({Id_docente:request.payload.idTeacher},function(err,teacher){
+          teacher.cursos.push(newCurso._id);
+          teacher.save();
+          return reply(newCurso);
+        })
+     });
   }//fin handler
 };//fin create user
 
