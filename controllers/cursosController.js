@@ -29,7 +29,7 @@ exports.crearCursos = {
   }//fin handler
 };//fin create user
 
-exports.verAllCourse = {
+exports.GetCursoById = {
   handler: function(request, reply) {
     var todoCursos = curso.findById({_id:request.payload.id});
     return reply(todoCursos);

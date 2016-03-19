@@ -21,7 +21,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'GET', path: '/v1/getUniversidades', config: usersController.getUniversidades},
 					{method: 'POST', path: '/v1/getTeacherCourse', config: docenteController.getTeacherCurso},
 					{method: 'POST', path: '/v1/getStudentCourse', config: studentController.getStudentCurso},
-					{method: 'POST', path: '/v1/SeeCourse', config: cursosController.verAllCourse},
+					{method: 'POST', path: '/v1/SeeCourse', config: cursosController.GetCursoById},
 					{method: 'POST', path: '/v1/getUniversity', config: usersController.getUniversityByName},
 					{method: 'POST', path: '/v1/getUniversityById', config: usersController.getUniversityById},
 					{method: 'POST', path: '/v1/getDocenteByUniversidad', config: studentController.getDocenteByUniversidad},
