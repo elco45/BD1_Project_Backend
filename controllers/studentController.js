@@ -1,7 +1,7 @@
 var estudiante = require('../schemas/estudiante');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var docente = require('../schemas/docente');
 var curso = require('../schemas/curso');
-
+var Anuncio = require('../schemas/Anuncios');
 exports.getStudentCurso = {
   	handler: function(request, reply){
     	var student = estudiante.findOne({Id_estudiante:request.payload.id});
@@ -61,3 +61,12 @@ exports.GetEstudianteById={
 	}
 }
 
+
+exports.getAnuncios_Estudiantes = {
+  handler: function(request, reply){
+  	 console.log(request.payload.Id_curso)
+       var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
+       console.log(Anuncioss)
+     reply(Anuncioss);
+  }
+}
