@@ -172,13 +172,24 @@ exports.getUniversityById = {
 
 exports.AddParentComment = {
   handler:function(request,reply){
-    console.log(request.payload)
+    var idUser = {
+      idEst: 0,
+      idDoc: 0,
+    };
+    if(request.payload.scope.currentUser.IdUser < 10000000){
+       idUser.idEst = null;
+       idUser.idDoc = request.payload.scope.currentUser.IdUser;
+    }else{
+      idUser.idEst = request.payload.scope.currentUser.IdUser;
+      idUser.idDoc = null;
+    }
+
     var newComment = new comments({
       Id_comentario:request.payload.Id_comentario,
       descripción: request.payload.text,
     	Id_comentario_padre: -1,
-    	Id_estudiante:request.payload.scope.currentUser.IdUser,
-    	Id_docente:null,
+    	Id_estudiante: IdUser.idEst,
+    	Id_docente: idUser.idDoc,
       Id_curso: request.payload.scope.CurrentCurso
 
     });
@@ -202,13 +213,23 @@ exports.AddParentComment = {
 
 exports.AddComment = {
   handler:function(request,reply){
-    console.log(request.payload)
+    var idUser = {
+      idEst: 0,
+      idDoc: 0,
+    };
+    if(request.payload.scope.currentUser.IdUser < 10000000){
+       idUser.idEst = null;
+       idUser.idDoc = request.payload.scope.currentUser.IdUser;
+    }else{
+      idUser.idEst = request.payload.scope.currentUser.IdUser;
+      idUser.idDoc = null;
+    }
     var newComment = new comments({
-      Id_comentario:request.payload.Id_comentario,
+      Id_comentario: request.payload.Id_comentario,
       descripción: request.payload.text,
     	Id_comentario_padre: request.payload.Id_parentComment,
-    	Id_estudiante:request.payload.scope.currentUser.IdUser,
-    	Id_docente:null,
+    	Id_estudiante: idUser.idEst,
+    	Id_docente: idUser.idDoc,
       Id_curso: request.payload.scope.CurrentCurso
 
     });
