@@ -30,6 +30,20 @@ exports.verificarSiTieneAnswer = {
     return reply(Subido);
   }//fin handler
 }//fin verificarsitieneanswer
+
+exports.ModificarAnswer = {
+  handler: function(request,reply){
+    var Subido = solucion.findOne({_id:request.payload.busqueda},function(err,answer){
+      answer.nombreArchivo = request.payload.newData.nameArchivo;
+			answer.respuesta = request.payload.newData.archivo;
+      answer.save(function(err){
+        if(err) throw err;
+      })
+      return reply('ok');
+    });//fin var
+  }//fin handler
+}//fin ModificarAnswer
+
 exports.updateTareaAnswer = {
   handler: function(request,reply){
     tarea.findOne({_id:request.payload.answer.Id_tarea},function(err,HW){
