@@ -1,5 +1,7 @@
 var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var curso = require('../schemas/curso');
+var tarea = require('../schemas/tarea');
+var solucion = require('../schemas/solucion');
 var estudiante = require('../schemas/estudiante')
 
 exports.getDocentes = {
@@ -9,6 +11,40 @@ exports.getDocentes = {
   }
 }
 
+exports.CreateTarea = {
+  handler: function(request,reply){
+    var newTarea = new tarea({
+      archivo: request.payload.archivo,
+      nombre: request.payload.nameArchivo,
+      fecha_entrega: request.payload.tarea.fecha,
+      parcial: request.payload.tarea.parcial,
+      solucion: []
+    });
+    newTarea.save();
+    return reply(newTarea);
+  }//fin handler
+}//fin CreateTarea
+
+exports.ConseguirTarea = {
+  handler: function(request, reply) {
+    var Tareas = tarea.findById({_id:request.payload.id});
+    return reply(Tareas);
+  }//fin handler
+}//fin verAllCourse
+
+exports.CursosTareas = {
+  handler: function(request,reply){
+    curso.findOne({_id:request.payload.cursoActual},function(err,HW){
+      var arrayTarea = HW.tareas;
+      arrayTarea.push(request.payload.idTarea);
+      HW.tareas = arrayTarea;
+      HW.save(function(err){
+        if(err) throw err;
+      })
+      return reply('ok');
+    });
+  }//fin handler
+}//fin CursosTareas
 
 exports.getTeacherCurso = {
   handler: function(request, reply){
@@ -80,7 +116,7 @@ exports.AceptarConfirmacion={
           return reply('ok');
         })
       })
-    });   
+    });
   }
 }
 
@@ -98,7 +134,3 @@ exports.RechazarConfirmacion={
     });
   }
 }
-
-
-
-

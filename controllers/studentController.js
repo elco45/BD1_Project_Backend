@@ -1,11 +1,27 @@
 var estudiante = require('../schemas/estudiante');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var docente = require('../schemas/docente');
 var curso = require('../schemas/curso');
+var tarea = require('../schemas/tarea');
+var solucion = require('../schemas/solucion');
 
 exports.getStudentCurso = {
   	handler: function(request, reply){
     	var student = estudiante.findOne({Id_estudiante:request.payload.id});
     	reply(student);
+  	}
+}
+
+exports.subirTarea = {
+  	handler: function(request, reply){
+  		var Solucion = new solucion({
+  			nombreArchivo:request.payload.nameArchivo,
+  			Id_tarea:request.payload.tarea._id,
+			respuesta:request.payload.archivo,
+			nota: 0,
+			Id_estudiante:request.payload.Id_estudiante.IdUser
+  		});
+  		Solucion.save();
+  		return reply(Solucion);
   	}
 }
 
@@ -60,4 +76,3 @@ exports.GetEstudianteById={
 		reply(student);
 	}
 }
-

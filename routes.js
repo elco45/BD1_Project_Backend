@@ -31,5 +31,9 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/getConfirmacionById', config: docenteController.getConfirmacionById},
 					{method: 'POST', path: '/v1/getEstudianteById', config: studentController.GetEstudianteById},
 					{method: 'POST', path: '/v1/aceptarConfirmacion', config: docenteController.AceptarConfirmacion},
-					{method: 'POST', path: '/v1/rechazarConfirmacion', config: docenteController.RechazarConfirmacion}
+					{method: 'POST', path: '/v1/rechazarConfirmacion', config: docenteController.RechazarConfirmacion},
+					{method: 'POST', path: '/v1/crearTarea', config: docenteController.CreateTarea},
+					{method: 'POST', path: '/v1/llenarCursoConTarea', config: docenteController.CursosTareas},
+					{method: 'POST', path: '/v1/getTarea', config: docenteController.ConseguirTarea},
+					{method: 'POST', path: '/v1/uploadTarea', config: studentController.subirTarea}
 					];
