@@ -1,7 +1,7 @@
 var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var curso = require('../schemas/curso');
 var estudiante = require('../schemas/estudiante')
-
+var Anuncio = require('../schemas/Anuncios');
 exports.getDocentes = {
   handler: function(request, reply){
     var docentes = docente.find({});
@@ -96,6 +96,27 @@ exports.RechazarConfirmacion={
       course.save();
       return reply('ok');
     });
+  }
+}
+
+exports.crearAnuncios = {
+   handler: function(request, reply){
+    var newAnuncio = Anuncio({
+      Id_curso:request.payload.idCurso,
+      descripcion :request.payload.des,
+      titulo:request.payload.titulo
+    });
+    newAnuncio.save();
+    return reply('ok');
+   }
+}
+
+exports.getAnuncios = {
+  handler: function(request, reply){
+    console.log("Es esto; "+request.payload.Id_curso);
+    var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
+    
+    reply(Anuncioss);
   }
 }
 
