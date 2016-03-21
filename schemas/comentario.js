@@ -5,9 +5,9 @@ var Comentario = new mongoose.Schema({
 	descripción: String,
 	Id_comentario_padre:Number,
 	Id_estudiante:String,
-	Id_docente:String
+	Id_docente:String,
+	Id_curso: String
 
 });
 
 module.exports = mongoose.model('Tabla_comentario', Comentario);
-

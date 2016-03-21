@@ -2,6 +2,7 @@ var docente = require('../schemas/docente');/*objetos q se van a volver tablas, 
 var estudiante = require('../schemas/estudiante');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var control_id = require('../schemas/control_id');
 var university = require('../schemas/universidad');
+var comments = require('../schemas/comentario');
 var SHA3 = require("crypto-js/sha3");
 var boom = require('boom');
 
@@ -141,7 +142,7 @@ exports.createUniversity={
       });
       newUniversidad.save(function(err){
         if (err) {
-          
+
         }else{
           control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
             ctrl.Id_universidad = request.payload.control_id.Id_universidad + 1;
@@ -166,6 +167,65 @@ exports.getUniversityById = {
     university.findOne({Id_universidad:request.payload.Id_universidad},function(err,control){
         reply(control);
     })
+  }
+}
+
+exports.AddParentComment = {
+  handler:function(request,reply){
+    console.log(request.payload)
+    var newComment = new comments({
+      Id_comentario:request.payload.Id_comentario,
+      descripción: request.payload.text,
+    	Id_comentario_padre: -1,
+    	Id_estudiante:request.payload.scope.currentUser.IdUser,
+    	Id_docente:null,
+      Id_curso: request.payload.scope.CurrentCurso
+
+    });
+    newComment.save(function (err) {
+      if(err){
+        return reply(err);
+      }else{
+        control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
+           ctrl.Id_comentario= request.payload.Id_comentario + 1;
+           ctrl.save(function(err){
+             if(err) throw err;
+             else
+              return reply({id: ctrl.Id_comentario -1});
+           })
+         })
+      }//fin else
+    });
+  }
+}
+
+
+exports.AddComment = {
+  handler:function(request,reply){
+    console.log(request.payload)
+    var newComment = new comments({
+      Id_comentario:request.payload.Id_comentario,
+      descripción: request.payload.text,
+    	Id_comentario_padre: request.payload.Id_parentComment,
+    	Id_estudiante:request.payload.scope.currentUser.IdUser,
+    	Id_docente:null,
+      Id_curso: request.payload.scope.CurrentCurso
+
+    });
+    newComment.save(function (err) {
+      if(err){
+        return reply(err);
+      }else{
+        control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
+           ctrl.Id_comentario= request.payload.Id_comentario + 1;
+           ctrl.save(function(err){
+             if(err) throw err;
+             else
+              return reply({id: ctrl.Id_comentario -1});
+           })
+         })
+      }//fin else
+    });
   }
 }
 

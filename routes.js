@@ -31,5 +31,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/getConfirmacionById', config: docenteController.getConfirmacionById},
 					{method: 'POST', path: '/v1/getEstudianteById', config: studentController.GetEstudianteById},
 					{method: 'POST', path: '/v1/aceptarConfirmacion', config: docenteController.AceptarConfirmacion},
-					{method: 'POST', path: '/v1/rechazarConfirmacion', config: docenteController.RechazarConfirmacion}
+					{method: 'POST', path: '/v1/rechazarConfirmacion', config: docenteController.RechazarConfirmacion},
+					{method: 'POST', path: '/v1/addParentComment', config: usersController.AddParentComment},
+					{method: 'POST', path: '/v1/addComment', config: usersController.AddComment}
 					];
