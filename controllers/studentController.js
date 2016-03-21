@@ -16,13 +16,32 @@ exports.subirTarea = {
   		var Solucion = new solucion({
   			nombreArchivo:request.payload.nameArchivo,
   			Id_tarea:request.payload.tarea._id,
-			respuesta:request.payload.archivo,
-			nota: 0,
-			Id_estudiante:request.payload.Id_estudiante.IdUser
+  			respuesta:request.payload.archivo,
+  			nota: 0,
+  			Id_estudiante:request.payload.Id_estudiante.IdUser
   		});
   		Solucion.save();
   		return reply(Solucion);
   	}
+}
+exports.verificarSiTieneAnswer = {
+  handler: function(request,reply){
+    var Subido = solucion.findOne({Id_tarea:request.payload.id_tarea,Id_estudiante:request.payload.Id_estudiante});
+    return reply(Subido);
+  }//fin handler
+}//fin verificarsitieneanswer
+exports.updateTareaAnswer = {
+  handler: function(request,reply){
+    tarea.findOne({_id:request.payload.answer.Id_tarea},function(err,HW){
+      var arrayTarea = HW.solucion;
+      arrayTarea.push(request.payload.answer._id);
+      HW.solucion = arrayTarea;
+      HW.save(function(err){
+        if(err) throw err;
+      })
+      return reply('ok');
+    })
+  }
 }
 
 exports.getDocenteByUniversidad={

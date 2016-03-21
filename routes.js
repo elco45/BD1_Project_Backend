@@ -35,5 +35,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/crearTarea', config: docenteController.CreateTarea},
 					{method: 'POST', path: '/v1/llenarCursoConTarea', config: docenteController.CursosTareas},
 					{method: 'POST', path: '/v1/getTarea', config: docenteController.ConseguirTarea},
-					{method: 'POST', path: '/v1/uploadTarea', config: studentController.subirTarea}
+					{method: 'POST', path: '/v1/uploadTarea', config: studentController.subirTarea},
+					{method: 'POST', path: '/v1/updateTarea', config: studentController.updateTareaAnswer},
+					{method: 'POST', path: '/v1/verifySolution', config: studentController.verificarSiTieneAnswer}
 					];
