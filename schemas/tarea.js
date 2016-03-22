@@ -1,10 +1,9 @@
-
 var mongoose = require('mongoose');
 
 var tarea = new mongoose.Schema({
-	Id_tarea:Number,
-	nota:Number,
-	fecha_entrega:Date(),
+	archivo: String,
+	nombre: String,
+	fecha_entrega:String,
 	parcial:Number,
 	solucion:[String]
 
@@ -12,4 +11,3 @@ var tarea = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Tabla_tarea', tarea);
-
