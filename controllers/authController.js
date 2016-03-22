@@ -20,7 +20,7 @@ exports.login = {
             return reply({email: user[0].email, IdUser:user[0].Id_docente,CurrentCurso:"0",Id_universidad: user[0].Id_universidad});
           }
         }
-      });
+      })
       estudiante.find({email: request.payload.email, password: request.payload.password}, function(err, user){
         if (!err) {
           if(user.length > 0){
