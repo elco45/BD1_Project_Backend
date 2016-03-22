@@ -58,6 +58,27 @@ exports.updateTareaAnswer = {
   }
 }
 
+exports.getCourseHW = {
+  handler: function(request,reply){
+    var course = curso.findOne({_id: request.payload.cursoActual})
+    return reply(course)
+  }
+}//fin getCourseHW
+
+exports.getHWAnswer = {
+  handler: function(request,reply){
+    var HW = tarea.findOne({_id:request.payload.idTarea});
+    return reply(HW);
+  }
+}//fin getHWAnswer
+
+exports.getAnswerNota = {
+  handler:function(request,reply){
+    var Nota = solucion.findOne({_id:request.payload.idSolucion,Id_estudiante:request.payload.idEstudiante.IdUser});
+    return reply(Nota);
+  }
+}
+
 exports.getDocenteByUniversidad={
 	handler:function(request,reply){
 		var docentes=docente.find({Id_universidad:request.payload.Id_universidad});

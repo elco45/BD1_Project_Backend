@@ -38,5 +38,11 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/uploadTarea', config: studentController.subirTarea},
 					{method: 'POST', path: '/v1/updateTarea', config: studentController.updateTareaAnswer},
 					{method: 'POST', path: '/v1/verifySolution', config: studentController.verificarSiTieneAnswer},
-					{method: 'POST', path: '/v1/modificaSolution', config: studentController.ModificarAnswer}
+					{method: 'POST', path: '/v1/modificaSolution', config: studentController.ModificarAnswer},
+					{method: 'POST', path: '/v1/getSolucion', config: docenteController.GetSolution},
+					{method: 'POST', path: '/v1/getEstudianteNombre', config: docenteController.GetEstudianteName},
+					{method: 'POST', path: '/v1/updateGrade', config: docenteController.PutNota},
+					{method: 'POST', path: '/v1/gettareadecurso', config: studentController.getCourseHW},
+					{method: 'POST', path: '/v1/getsolucionesdetarea', config: studentController.getHWAnswer},
+					{method: 'POST', path: '/v1/getnotasolucion', config: studentController.getAnswerNota}
 					];

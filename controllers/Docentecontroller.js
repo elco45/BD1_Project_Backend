@@ -11,6 +11,31 @@ exports.getDocentes = {
   }
 }
 
+exports.PutNota = {
+  handler: function(request,reply){
+    var Solution = solucion.findOne({_id:request.payload.cambio._id},function(err,answer){
+      answer.nota = request.payload.newNota;
+      answer.save();
+      return reply(answer);
+    });
+
+  }
+}//fin modificar nota
+
+exports.GetSolution = {
+  handler: function(request, reply) {
+    var Solution = solucion.findById({_id:request.payload.hw});
+    return reply(Solution);
+  }//fin handler
+}
+
+exports.GetEstudianteName = {
+  handler: function(request, reply) {
+    var Student = estudiante.findOne({Id_estudiante:request.payload.idEstudiante});
+    return reply(Student);
+  }//fin handler
+}
+
 exports.CreateTarea = {
   handler: function(request,reply){
     var newTarea = new tarea({

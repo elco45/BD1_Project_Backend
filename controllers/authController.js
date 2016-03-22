@@ -29,7 +29,9 @@ exports.login = {
           }
         }
       }).then(function(error){
-        return reply('error')
+        if(error){
+          return reply('error');
+        }
       })
   }
 }
