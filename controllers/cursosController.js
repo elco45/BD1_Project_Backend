@@ -37,10 +37,9 @@ exports.GetCursoById = {
   }//fin handler
 }//fin verAllCourse
 
-
 exports.GetCourseComments = {
   handler: function(request,reply){
-    var getComments = comments.find({Id_curso: request.payload.Id_curso },function(err,commentArray){``      
+    var getComments = comments.find({Id_curso: request.payload.Id_curso },function(err,commentArray){``
       return reply(commentArray)
     })
   }

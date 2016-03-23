@@ -1,7 +1,9 @@
 var docente = require('../schemas/docente');/*objetos q se van a volver tablas, ayuda a crud el bd*/
 var curso = require('../schemas/curso');
+var tarea = require('../schemas/tarea');
+var solucion = require('../schemas/solucion');
 var estudiante = require('../schemas/estudiante')
-
+var Anuncio = require('../schemas/Anuncios');
 exports.getDocentes = {
   handler: function(request, reply){
     var docentes = docente.find({});
@@ -9,6 +11,65 @@ exports.getDocentes = {
   }
 }
 
+exports.PutNota = {
+  handler: function(request,reply){
+    var Solution = solucion.findOne({_id:request.payload.cambio._id},function(err,answer){
+      answer.nota = request.payload.newNota;
+      answer.save();
+      return reply(answer);
+    });
+
+  }
+}//fin modificar nota
+
+exports.GetSolution = {
+  handler: function(request, reply) {
+    var Solution = solucion.findById({_id:request.payload.hw});
+    return reply(Solution);
+  }//fin handler
+}
+
+exports.GetEstudianteName = {
+  handler: function(request, reply) {
+    var Student = estudiante.findOne({Id_estudiante:request.payload.idEstudiante});
+    return reply(Student);
+  }//fin handler
+}
+
+exports.CreateTarea = {
+  handler: function(request,reply){
+    var newTarea = new tarea({
+      archivo: request.payload.archivo,
+      nombre: request.payload.nameArchivo,
+      fecha_entrega: request.payload.tarea.fecha,
+      parcial: request.payload.tarea.parcial,
+      solucion: []
+    });
+    newTarea.save();
+    return reply(newTarea);
+  }//fin handler
+}//fin CreateTarea
+
+exports.ConseguirTarea = {
+  handler: function(request, reply) {
+    var Tareas = tarea.findById({_id:request.payload.id});
+    return reply(Tareas);
+  }//fin handler
+}//fin verAllCourse
+
+exports.CursosTareas = {
+  handler: function(request,reply){
+    curso.findOne({_id:request.payload.cursoActual},function(err,HW){
+      var arrayTarea = HW.tareas;
+      arrayTarea.push(request.payload.idTarea);
+      HW.tareas = arrayTarea;
+      HW.save(function(err){
+        if(err) throw err;
+      })
+      return reply('ok');
+    });
+  }//fin handler
+}//fin CursosTareas
 
 exports.getTeacherCurso = {
   handler: function(request, reply){
@@ -80,7 +141,7 @@ exports.AceptarConfirmacion={
           return reply('ok');
         })
       })
-    });   
+    });
   }
 }
 
@@ -100,5 +161,22 @@ exports.RechazarConfirmacion={
 }
 
 
+exports.crearAnuncios = {
+   handler: function(request, reply){
+    var newAnuncio = Anuncio({
+      Id_curso:request.payload.idCurso,
+      descripcion :request.payload.des,
+      titulo:request.payload.titulo
+    });
+    newAnuncio.save();
+    return reply('ok');
+   }
+}
 
+exports.getAnuncios = {
+  handler: function(request, reply){
+    var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
 
+    reply(Anuncioss);
+  }
+}

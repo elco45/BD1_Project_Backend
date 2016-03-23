@@ -188,7 +188,7 @@ exports.AddParentComment = {
       Id_comentario:request.payload.Id_comentario,
       descripción: request.payload.text,
     	Id_comentario_padre: -1,
-    	Id_estudiante: IdUser.idEst,
+    	Id_estudiante: idUser.idEst,
     	Id_docente: idUser.idDoc,
       Id_curso: request.payload.scope.CurrentCurso
 
@@ -249,6 +249,7 @@ exports.AddComment = {
     });
   }
 }
+
 
 
 
