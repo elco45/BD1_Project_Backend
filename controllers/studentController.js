@@ -3,7 +3,7 @@ var docente = require('../schemas/docente');
 var curso = require('../schemas/curso');
 var tarea = require('../schemas/tarea');
 var solucion = require('../schemas/solucion');
-
+var Anuncio = require('../schemas/Anuncios');
 exports.getStudentCurso = {
   	handler: function(request, reply){
     	var student = estudiante.findOne({Id_estudiante:request.payload.id});
@@ -129,4 +129,14 @@ exports.GetEstudianteById={
 		var student=estudiante.findOne({Id_estudiante:request.payload.Id_estudiante});
 		reply(student);
 	}
+}
+
+
+exports.getAnuncios_Estudiantes = {
+  handler: function(request, reply){
+     console.log(request.payload.Id_curso)
+       var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
+       console.log(Anuncioss)
+     reply(Anuncioss);
+  }
 }

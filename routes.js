@@ -46,5 +46,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/getsolucionesdetarea', config: studentController.getHWAnswer},
 					{method: 'POST', path: '/v1/getnotasolucion', config: studentController.getAnswerNota},
 					{method: 'POST', path: '/v1/getAnuncios', config: docenteController.getAnuncios},
-					{method: 'POST', path: '/v1/crearAnuncios', config: docenteController.crearAnuncios}
+					{method: 'POST', path: '/v1/crearAnuncios', config: docenteController.crearAnuncios},
+					{method: 'POST', path: '/v1/getAnuncios_Estudiantes', config: studentController.getAnuncios_Estudiantes}
+				
 					];
