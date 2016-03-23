@@ -175,8 +175,17 @@ exports.crearAnuncios = {
 
 exports.getAnuncios = {
   handler: function(request, reply){
+<<<<<<< HEAD
     var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
 
     reply(Anuncioss);
   }
 }
+=======
+    console.log("Es esto; "+request.payload.Id_curso);
+    var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
+    
+    reply(Anuncioss);
+  }
+}
+>>>>>>> d993159035789ebc86d0845c6574741e46e794c9

@@ -134,7 +134,9 @@ exports.GetEstudianteById={
 
 exports.getAnuncios_Estudiantes = {
   handler: function(request, reply){
+     console.log(request.payload.Id_curso)
        var Anuncioss = Anuncio.find({ "Id_curso":request.payload.Id_curso});
+       console.log(Anuncioss)
      reply(Anuncioss);
   }
 }
