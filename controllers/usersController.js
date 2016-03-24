@@ -21,17 +21,17 @@ exports.createUser = {
        });
        newDocente.save(function (err) {
          if(err){
-           return reply(err);
+           return reply(boom.notAcceptable('Username must be unique: ' + err));
          }else{
            control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
               ctrl.Id_docente = request.payload.control_id.Id_docente + 1;
               ctrl.save(function(err){
                 if(err) throw err;
+                return reply('ok');
               })
             })
          }//fin else
        });
-       return reply('ok');
       //fin if
     }else{
       var newEstudiante = new estudiante({
@@ -46,18 +46,17 @@ exports.createUser = {
       });
       newEstudiante.save(function (err) {
         if(err){
-          return reply(err);
+          return reply(boom.notAcceptable('Username must be unique: ' + err));
         }else{
           control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
              ctrl.Id_estudiante= request.payload.control_id.Id_estudiante + 1;
              ctrl.save(function(err){
                if(err) throw err;
+                return reply('ok');
              })
            })
         }//fin else
       });
-      return reply('ok');
-
     }//fin else
   }//fin handler
 };//fin create user
@@ -77,17 +76,18 @@ exports.createUserWithU = {
        });
        newDocente.save(function (err) {
          if(err){
-           return reply(err);
+           return reply(boom.notAcceptable('error'));
          }else{
            control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
               ctrl.Id_docente = request.payload.control_id.Id_docente + 1;
               ctrl.save(function(err){
                 if(err) throw err;
+                return reply('ok');
               })
             })
          }//fin else
        });
-       return reply('ok');
+       
       //fin if
     }else{
       var newEstudiante = new estudiante({
@@ -102,17 +102,21 @@ exports.createUserWithU = {
       });
       newEstudiante.save(function (err) {
         if(err){
-          return reply(err);
+          return reply(boom.notAcceptable('error'));
         }else{
           control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
-             ctrl.Id_estudiante= request.payload.control_id.Id_estudiante + 1;
-             ctrl.save(function(err){
-               if(err) throw err;
-             })
-           })
+            ctrl.Id_estudiante= request.payload.control_id.Id_estudiante + 1;
+            ctrl.save(function(err){
+              if(err){ 
+                throw err;
+              }else{
+               return reply('ok');
+              }
+            })
+          })
         }//fin else
       });
-      return reply('ok');
+      
 
     }//fin else
   }//fin handler
@@ -142,7 +146,7 @@ exports.createUniversity={
       });
       newUniversidad.save(function(err){
         if (err) {
-
+          return reply(boom.notAcceptable('error'));
         }else{
           control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
             ctrl.Id_universidad = request.payload.control_id.Id_universidad + 1;

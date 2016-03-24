@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var docente = new mongoose.Schema({
 	Id_docente: Number,
@@ -7,9 +8,10 @@ var docente = new mongoose.Schema({
 	especialidad:String,
 	Id_universidad:Number,
 	password:String,
-	email: String,
+	email: {type: String, unique: true, required: true},
 	cursos: [String]
 
 });
 
+docente.plugin(uniqueValidator);
 module.exports = mongoose.model('Tabla_docente', docente);
