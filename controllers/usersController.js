@@ -249,7 +249,25 @@ exports.AddComment = {
     });
   }
 }
+exports.GetPoster = {
+  handler: function(request,reply){
+    if(request.payload.id >9999999){
+      estudiante.findOne({Id_estudiante:request.payload.id},function(err,user){
+        if(!err){
+            reply({email:user.email})
+        }
+      })
+    }else{
+      docente.findOne({Id_docente:request.payload.id},function(err,user){
 
+        if(!err)
+            reply({email:user.email})
+
+      })
+    }
+
+  }
+}
 
 
 

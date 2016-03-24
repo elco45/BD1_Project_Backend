@@ -50,5 +50,6 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 					{method: 'POST', path: '/v1/getAnuncios_Estudiantes', config: studentController.getAnuncios_Estudiantes},
 					{method: 'POST', path: '/v1/addParentComment', config: usersController.AddParentComment},
 					{method: 'POST', path: '/v1/addComment', config: usersController.AddComment},
-					{method: 'POST', path: '/v1/getCourseComments', config: cursosController.GetCourseComments}
-					];
+					{method: 'POST', path: '/v1/getCourseComments', config: cursosController.GetCourseComments},
+					{method: 'POST', path: '/v1/getPoster', config: usersController.GetPoster}
+				];
