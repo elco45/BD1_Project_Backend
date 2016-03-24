@@ -125,7 +125,11 @@ exports.createUserWithU = {
 exports.getCtrl = {
   handler: function(request, reply){
     control_id.findOne({_id:'56d7308a3e79d4780263b696'},function(err,control){
+      if (err) {
+        throw err;
+      }else{ 
         reply(control);
+      }
     })
   }
 }
@@ -148,12 +152,14 @@ exports.createUniversity={
         if (err) {
           return reply(boom.notAcceptable('error'));
         }else{
-          control_id.findById('56d7308a3e79d4780263b696',function(err,ctrl){
+          control_id.findById('56d7308a3e79d4780263b696',function(error,ctrl){
             ctrl.Id_universidad = request.payload.control_id.Id_universidad + 1;
-            ctrl.save(function(err){
-              if(err) throw err;
+            ctrl.save(function(error){
+              if(error) throw error;
+
             })
           })
+          return reply('ok');
         }
       })
   }
