@@ -42,8 +42,9 @@ exports.CreateTarea = {
       archivo: request.payload.archivo,
       nombre: request.payload.nameArchivo,
       fecha_entrega: request.payload.tarea.fecha,
-      parcial: request.payload.tarea.parcial,
-      solucion: []
+      parcial: 1,
+      solucion: [],
+      titulo:request.payload.tarea.titulo
     });
     newTarea.save();
     return reply(newTarea);

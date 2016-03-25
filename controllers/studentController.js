@@ -74,8 +74,13 @@ exports.getHWAnswer = {
 
 exports.getAnswerNota = {
   handler:function(request,reply){
-    var Nota = solucion.findOne({_id:request.payload.idSolucion,Id_estudiante:request.payload.idEstudiante.IdUser});
-    return reply(Nota);
+    solucion.find({Id_tarea:request.payload.idTarea},function(err,sol){
+      for(var i=0;i<sol.length;i++){
+        if (sol[i].Id_estudiante==request.payload.Id_estudiante) {
+          return reply(sol[i])
+        }
+      }
+    });
   }
 }
 
