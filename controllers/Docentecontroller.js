@@ -112,7 +112,7 @@ exports.UpdateTeacherCourse = {
 exports.getDocenteById = {
   handler: function(request, reply){
     docente.find({Id_docente:request.payload.idDocente},function(err,doc){
-      return reply({nombre: doc[0].nombre});
+      return reply({nombre: doc[0].nombre,apellido:doc[0].apellido});
     });
   }
 }
