@@ -15,7 +15,7 @@ exports.createUser = {
          apellido: request.payload.user.apellido,
          especialidad: request.payload.user.especialidad,
          Id_universidad: request.payload.control_id.Id_universidad+1,
-         password: request.payload.user.password,
+         password: SHA3(request.payload.user.password),
          email: request.payload.user.email,
          cursos:[]
        });
@@ -39,7 +39,7 @@ exports.createUser = {
         nombre: request.payload.user.nombre,
         apellido: request.payload.user.apellido,
         Id_universidad: request.payload.control_id.Id_universidad+1,
-        password: request.payload.user.password,
+        password: SHA3(request.payload.user.password),
         email: request.payload.user.email,
         cursos:[]
 
@@ -70,7 +70,7 @@ exports.createUserWithU = {
          apellido: request.payload.user.apellido,
          especialidad: request.payload.user.especialidad,
          Id_universidad: request.payload.universidad.Id_universidad,
-         password: request.payload.user.password,
+         password: SHA3(request.payload.user.password),
          email: request.payload.user.email,
          cursos:[]
        });
@@ -95,7 +95,7 @@ exports.createUserWithU = {
         nombre: request.payload.user.nombre,
         apellido: request.payload.user.apellido,
         Id_universidad: request.payload.universidad.Id_universidad,
-        password: request.payload.user.password,
+        password: SHA3(request.payload.user.password),
         email: request.payload.user.email,
         cursos:[]
 

@@ -13,30 +13,24 @@ exports.login = {
     }
   },
   handler: function(request, reply) {
-      docente.find({email: request.payload.email, password: request.payload.password}, function(err, user){
+      docente.find({email: request.payload.email, password: String(SHA3(request.payload.password))}, function(err, user){
         if(!err){
           if(user.length > 0){
             //request.auth.session.set(user[0]);
             return reply({email: user[0].email, IdUser:user[0].Id_docente,CurrentCurso:"0",Id_universidad: user[0].Id_universidad,IdTarea:null});
           }
         }
-      }).then(function(err){
-        if(err.length <1){
-          estudiante.find({email: request.payload.email, password: request.payload.password}, function(err, user){
-            if (!err) {
-              if(user.length > 0){
-                //request.auth.session.set(user[0]);
-                return reply({email: user[0].email, IdUser:user[0].Id_estudiante,CurrentCurso:"0",Id_universidad: user[0].Id_universidad,IdTarea:null});
-              }
-            }
-          }).then(function(error){          
-            if (error.length < 1) {
-              return reply('error')
-            }
-          })
+      })
+      estudiante.find({email: request.payload.email, password: String(SHA3(request.payload.password))}, function(err, user){
+        if (!err) {
+          if(user.length > 0){
+            //request.auth.session.set(user[0]);
+            return reply({email: user[0].email, IdUser:user[0].Id_estudiante,CurrentCurso:"0",Id_universidad: user[0].Id_universidad,IdTarea:null});
+          }
+          var erro=boom.unauthorized('error')
+          return reply(erro.message);
         }
       })
-
   }
 }
 
